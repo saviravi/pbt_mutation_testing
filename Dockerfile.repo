@@ -1,0 +1,16 @@
+FROM muttest_base
+
+WORKDIR /home/myuser/app
+
+ARG REPO_URL
+
+# RUN sudo chmod +x /home/myuser/app/entrypoint.sh
+RUN /home/myuser/app/entrypoint.sh $REPO_URL
+
+RUN chmod -R 777 /home/myuser/app/repo
+
+RUN useradd -m myuser
+USER myuser
+
+# Default command (this can be overridden at runtime)
+ENTRYPOINT ["bash"]

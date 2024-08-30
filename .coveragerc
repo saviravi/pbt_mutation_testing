@@ -1,0 +1,5 @@
+[run]
+dynamic_context = test_function
+branch = True
+omit = tests/*
+timid = True

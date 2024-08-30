@@ -1,0 +1,28 @@
+# services:
+#   repo1:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     environment:
+#       - REPO_URL=https://github.com/daffidwilde/matching.git
+
+services:
+  repo1:
+    build:
+      context: .
+      dockerfile: Dockerfile.repo
+      args:
+        REPO_URL: https://github.com/daffidwilde/matching.git
+    stdin_open: true # docker run -i
+    volumes:
+      - ./repo1/.mutmut-cache:/home/myuser/app/.mutmut-cache:rw
+      - ./repo1/mutmut_run.sh:/home/myuser/app/mutmut_run.sh
+
+  # repo2:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.repo2
+  #   environment:
+  #     - REPO_URL=https://github.com/Axelrod-Python/Axelrod.git
+  #   volumes:
+  #     - ./repo2:/home/myuser/app/output_repo2
